@@ -28,11 +28,11 @@ const ListBook = () => {
     setValidated(true);
     
     const book = {
-      bookTitle: form.elements.formBookTitle.value,
-      bookAuthor: form.elements.formBookAuthor.value,
-      bookGenre: selectedGenre,
-      bookPrice: form.elements.formBookPrice.value,
-      bookDescription: form.elements.formBookDescription.value,
+      title: form.elements.formBookTitle.value,
+      author: form.elements.formBookAuthor.value,
+      genre: selectedGenre,
+      price: form.elements.formBookPrice.value,
+      description: form.elements.formBookDescription.value,
       email: form.elements.formBasicEmail.value,
       password: form.elements.formBasicPassword.value,
     };
