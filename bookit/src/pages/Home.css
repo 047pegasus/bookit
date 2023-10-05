@@ -1,0 +1,14 @@
+.hero-container{
+    margin-top: 1em;
+    background-color: rgb(44, 44, 44);
+    padding-left: 2em;
+}
+.g-4{
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 1em 1em;
+}
+.card{
+    width: 70%;
+}
