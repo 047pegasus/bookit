@@ -24,6 +24,15 @@ const Login = () => {
     setForm({ ...form, [name]: value });
   };
 
+  //store user email id in the local storage
+  const storeUserEmail = (email) => {
+    try {
+      localStorage.setItem('email', email)
+    } catch (error) {
+      throw error
+    }
+  }
+
   // This function will redirect the user to the 
   // appropriate page once the authentication is done.
   const redirectNow = () => {
@@ -62,11 +71,14 @@ const Login = () => {
       const user = await emailPasswordLogin(form.email, form.password);
       if (user) {
         redirectNow();
+        storeUserEmail(form.email);
       }
     } catch (error) {
       alert(error)
     }
   };
+
+
 
   return <form style={{ display: "flex", flexDirection: "column", maxWidth: "300px", margin: "auto" }}>
     <h1>Login</h1>

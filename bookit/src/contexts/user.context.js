@@ -58,7 +58,7 @@ export const UserProvider = ({ children }) => {
       throw error
     }
   }
-
+  
   return <UserContext.Provider value={{ user, setUser, fetchUser, emailPasswordLogin, emailPasswordSignup, logOutUser }}>
     {children}
   </UserContext.Provider>;
