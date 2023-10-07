@@ -1,7 +1,8 @@
-import { useContext, useState, useEffect } from 'react';
-import { UserContext } from '../contexts/user.context';
+import { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import {Table} from 'react-bootstrap';
+import { useContext } from 'react';
+import { UserContext } from '../contexts/user.context';
 
 const UserListings = () => {
   // Fetching user details from UserContext
@@ -9,7 +10,7 @@ const UserListings = () => {
   
   // To prove that the identity of the user, we are attaching
   // an Authorization Header with the request
-  //const headers = { Authorization: `Bearer ${user._accessToken}` }
+  const headers = { Authorization: `Bearer ${user._accessToken}` }
 
 
   const [listings, setListings] = useState([]);
@@ -52,12 +53,18 @@ const UserListings = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
   const userEmail = localStorage.getItem('email');
-  
-  const handleDelete = (btitle, bid) => {
-    // Make a request to the backend API
-    fetch(`http://localhost:5000/api/listingsDelete?email=${userEmail}&title=${btitle}&id=${bid}`)
+  console.log(listings);
+
+  const handleDelete = (listtitle,listid) => {
+    // Make a request to the backend API using delete method
+    fetch(`http://localhost:5000/api/listingsDelete?email=${userEmail}&title=${listtitle}&id=${listid}`,{
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    }
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error('Failed to delete listing');
@@ -67,8 +74,10 @@ const UserListings = () => {
     .then((data) => {
       setListings(data);
       setLoading(false);
+      window.location.reload();
     })
   };
+
 
   return (
     <>
@@ -80,24 +89,30 @@ const UserListings = () => {
       <Table responsive variant="dark" hover bordered class="table">
         <thead>
           <tr>
+            <th scope="col">Book Unique ID</th>
             <th scope="col">Book Title</th>
             <th scope="col">Author</th>
             <th scope="col">Genre</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
+            <th scope="col">Book Cover</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {listings.map((listing) => (
             <tr>
+              <td>{listing._id}</td>
               <td>{listing.title}</td>
               <td>{listing.author}</td>
               <td>{listing.genre}</td>
               <td>{listing.price}</td>
               <td>{listing.description}</td>
               <td>
-                <button className="btn btn-danger" onClick={handleDelete.bind(listing.title,listing._id)}>Delete Listing</button>
+                <img src={`data:image/jpeg;base64,${listing.cover.data.data}`} alt="Book Cover" width="100" height="100"/>      
+              </td>
+              <td>
+                <button className="btn btn-danger" onClick={() => handleDelete(listing.title , listing._id)}>Delete Listing</button>
               </td>
             </tr>
           ))}
