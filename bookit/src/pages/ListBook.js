@@ -3,7 +3,8 @@ import { UserContext } from '../contexts/user.context';
 import NavBar from '../components/NavBar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import '../pages/Listbook.css';
+import './styles/Listbook.style.css';
+import illustration from '../assets/illustration.svg';
 
 const ListBook = () => {
   // Fetching user details from UserContext
@@ -65,11 +66,15 @@ const ListBook = () => {
     return (
       <>
       <NavBar />
-      <h1 className="title">List Your Own Book</h1>
+      <div class="container-form">
+        <div class="column"> 
+      <h1 className="title"><strong>List Your Own Book</strong></h1>
       <br/>
       <p>Fill the form below to list your book in the store.</p>
+      <img src={illustration} alt="Add a Book" width="500" height="600"></img>
+      </div>
       <div className="form-container">
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className='formfill'>
       <Form.Group className="mb-3" controlId="formBookTitle">
         <Form.Label>Book Title</Form.Label>
         <Form.Control required type="text" placeholder="Enter Book Title (*required)" />
@@ -126,6 +131,7 @@ const ListBook = () => {
         Submit LIsting
       </Button>
     </Form>
+    </div>
     </div>
       </>
     )

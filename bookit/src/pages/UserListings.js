@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar';
 import {Table} from 'react-bootstrap';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/user.context';
+import "./styles/Listings.style.css"
+import illustration2 from "../assets/illustration2.svg"
 
 const UserListings = () => {
   // Fetching user details from UserContext
@@ -82,11 +84,12 @@ const UserListings = () => {
   return (
     <>
     <NavBar/>
-    <div>
-      <h2>Your Book Listings</h2>
+    <div className='container-listings'>
+      <h1>Your Book Listings</h1>
      {// a react-boostrap table of all the listings of the user aloing with the edit and delete buttons
      }
-      <Table responsive variant="dark" hover bordered class="table">
+     <div className='listcontainer'>
+      <Table responsive variant="dark" hover bordered className="table">
         <thead>
           <tr>
             <th scope="col">Book Unique ID</th>
@@ -118,6 +121,8 @@ const UserListings = () => {
           ))}
         </tbody>
       </Table>
+      </div>
+      <img src={illustration2} alt="" width="400" height="200" className='imgil'></img>
     </div>
 
     </>

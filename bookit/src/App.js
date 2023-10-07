@@ -6,11 +6,11 @@ import PrivateRoute from "./pages/PrivateRoute.page";
 import Signup from "./pages/Signup.page";
 import ListBook from "./pages/ListBook";
 import UserListings from "./pages/UserListings";
-import About from "./pages/About";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Details from "./pages/Details.page";
+import Profile from "./pages/Profile.page";
 import History from "./pages/History.page";
 import Reset from "./pages/Reset.page";
+
 import Cart from "./pages/Cart.page";
 
 function App() {
@@ -22,13 +22,12 @@ function App() {
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/about" element={<About />} />
           <Route exact path="/reset" element={<Reset />} />
           {/* We are protecting our Home Page from unauthenticated */}
           {/* users by wrapping it with PrivateRoute here. */}
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/user" element={<Details />} />
+            <Route exact path="/user" element={<Profile />} />
             <Route exact path="/history" element={<History />} />
             <Route exact path="/listbook" element={<ListBook />} />
             <Route exact path="/userlistings" element={<UserListings />} />
