@@ -35,6 +35,10 @@ const ListBook = () => {
       description: form.elements.formBookDescription.value,
       email: form.elements.formBasicEmail.value,
       password: form.elements.formBasicPassword.value,
+      cover:{
+        data: form.elements.formBookCover.value,
+        contentType: "image/png"
+      },
     };
 
     console.log(book);

@@ -1,7 +1,33 @@
-import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from "../assets/logo.png"
+import "./login.css"
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" align="center" style={{color: 'white'}} {...props}>
+      {'Copyright © '}
+      <Link color="inherit" to="/">
+        Bookit
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -78,33 +104,115 @@ const Login = () => {
     }
   };
 
+  const defaultTheme = createTheme();
 
+  return (
+    <>
+        <ThemeProvider theme={defaultTheme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{backgroundColor: "#1a1b26", color: "white"}}>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            {/*
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+          </Avatar>
+          */
+          }
+          <img src={logo} alt="Bookit" height={100}></img>
+            <Typography component="h1" variant="h5">
+             <strong> Sign in </strong>
+            </Typography>
+            <Box component="form" sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Email"
+                type="email"
+                InputLabelProps={{
+                  style: { color: '#fff' }, 
+               }}
+                variant="outlined"
+                name="email"
+                value={Box.email}
+                onChange={onFormInputChange}
+                id="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Password"
+                InputLabelProps={{
+                  style: { color: '#fff' }, 
+               }}
+                type="password"
+                variant="outlined"
+                color="success"
+                name="password"
+                value={Box.password}
+                onChange={onFormInputChange}
+                id="password"
+                autoComplete="password"
+              />
 
-  return <form style={{ display: "flex", flexDirection: "column", maxWidth: "300px", margin: "auto" }}>
-    <h1>Login</h1>
-    <TextField
-      label="Email"
-      type="email"
-      variant="outlined"
-      name="email"
-      value={form.email}
-      onChange={onFormInputChange}
-      style={{ marginBottom: "1rem" }}
-    />
-    <TextField
-      label="Password"
-      type="password"
-      variant="outlined"
-      name="password"
-      value={form.password}
-      onChange={onFormInputChange}
-      style={{ marginBottom: "1rem" }}
-    />
-    <Button variant="contained" color="primary" onClick={onSubmit}>
-      Login
-    </Button>
-    <p>Don't have an account? <Link to="/signup">Signup</Link></p>
-  </form>
-}
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
 
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={onSubmit}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link exact to={"/reset"} variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/signup" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+</>
+  );
+};
 export default Login;

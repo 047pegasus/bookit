@@ -31,8 +31,8 @@ function NavBar() {
             <Nav.Link as={NavLink} exact to="/listbook"> ListBook</Nav.Link>
             <Nav.Link as={NavLink} exact to="/userlistings">Your Listings</Nav.Link>
             <NavDropdown title="Profile Settings" id="collapsible-nav-dropdown">
-              <NavDropdown.Item as={NavLink} exact to="/profile">Your Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/transactions">History Transactions</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} exact to="/user">Your Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/history">History Transactions</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={NavLink} exact to="/" onClick={logOut}>
                 SignOut

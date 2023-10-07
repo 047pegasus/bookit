@@ -3,7 +3,7 @@ import { App, Credentials } from "realm-web";
 import { APP_ID } from "../realm/constants";
 
 // Creating a Realm App Instance
-const app = new App(APP_ID);
+export const app = new App(APP_ID);
 
 // Creating a user context to manage and access all the user related functions
 // across different component and pages.
