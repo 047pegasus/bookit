@@ -1,18 +1,10 @@
 import React from 'react';
-import { UserContext } from '../contexts/user.context';
 import NavBar from '../components/NavBar';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {Table} from 'react-bootstrap';
-
-//getting email from local storage
-const email = localStorage.getItem('email');
-
+import illustration4 from "../assets/illustration4.svg"
+import "./styles/History.style.css"
 const History = () => {
-    const { user } = useContext(UserContext);
-  
-    // To prove that the identity of the user, we are attaching
-    // an Authorization Header with the request
-    const headers = { Authorization: `Bearer ${user._accessToken}` }
   
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,17 +12,17 @@ const History = () => {
   
     useEffect(() => {
       // Retrieve the user email from local storage or wherever it is stored in your frontend
-      const userEmail = localStorage.getItem('email');
+      const email = localStorage.getItem('email');
   
       // Check if the email is available
-      if (!userEmail) {
+      if (!email) {
         setError('User email is not available');
         setLoading(false);
         return;
       }
   
       // Make a request to the backend API
-      fetch(`http://localhost:5000/api/history?email=${userEmail}`)
+      fetch(`http://localhost:5000/api/history?email=${email}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Failed to fetch listings');
@@ -54,19 +46,19 @@ const History = () => {
     if (error) {
       return <p>Error: {error}</p>;
     }
-    const userEmail = localStorage.getItem('email');
   
     return (
       <>
       <NavBar/>
-      <div>
-        <h2>Your History</h2>
+      <div className='history-container'>
+        <h1>Your History</h1>
        {// a react-boostrap table of all the listings of the user aloing with the edit and delete buttons
        }
+       <div className='historycontainer'>
         <Table responsive variant="dark" hover bordered class="table">
           <thead>
             <tr>
-              <th scope="col">Book Unique ID</th>
+              <th scope="col">Book Transactions ID</th>
               <th scope="col">Book Title</th>
               <th scope="col">Author</th>
               <th scope="col">Genre</th>
@@ -87,6 +79,8 @@ const History = () => {
             ))}
           </tbody>
         </Table>
+        </div>
+        <img src={illustration4} alt='history' width={300} height={300} className='history-img' />
       </div>
   
       </>
