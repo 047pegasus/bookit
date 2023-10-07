@@ -22,6 +22,10 @@
 <img src="https://img.shields.io/github/commit-activity/m/047pegasus/bookit?style&color=5D6D7E" alt="GitHub commit activity" />
 <img src="https://img.shields.io/github/languages/top/047pegasus/bookit?style&color=5D6D7E" alt="GitHub top language" />
 </div>
+<br/>
+<div align="center">
+  <img src="https://socialify.git.ci/047pegasus/bookit/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Charlie%20Brown&theme=Dark" alt="bookit" width="640" height="320" />
+</div>
 
 ---
 
